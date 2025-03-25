@@ -36,6 +36,7 @@
               modules = [
                 {
                   packages = with pkgs; [
+                    libyaml # for psych
                   ];
 
                   languages.ruby = {
