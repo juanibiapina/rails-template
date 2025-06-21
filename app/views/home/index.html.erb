@@ -1,0 +1,48 @@
+<% content_for :title, "Dashboard" %>
+<% content_for :header do %>
+  <nav class="bg-white border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <h1 class="text-xl font-semibold text-gray-900">Rails Template</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <%= render "shared/user_icon" %>
+        </div>
+      </div>
+    </div>
+  </nav>
+<% end %>
+
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="bg-white rounded-lg shadow">
+    <div class="px-4 py-5 sm:p-6">
+      <div class="text-center">
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">Welcome to Your Rails App</h1>
+        <p class="text-lg text-gray-600 mb-8">
+          This is a Rails template application with authentication, styling, and deployment ready to go.
+        </p>
+        
+        <div class="max-w-md mx-auto">
+          <div class="bg-gray-50 rounded-lg p-6">
+            <h2 class="text-lg font-medium text-gray-900 mb-4">Hello, <%= current_user.name %>!</h2>
+            <p class="text-sm text-gray-600 mb-4">
+              You're successfully authenticated and ready to start building your application.
+            </p>
+            <div class="space-y-2">
+              <p class="text-xs text-gray-500">Email: <%= current_account.email %></p>
+              <% if current_user.picture.present? %>
+                <img src="<%= current_user.picture %>" alt="Profile" class="w-16 h-16 rounded-full mx-auto">
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <%= link_to "Sign Out", destroy_account_session_path, method: :delete, 
+                class: "inline-flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white text-sm font-medium rounded-lg transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

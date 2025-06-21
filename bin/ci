@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+bin/rails test
+bin/rails test:system
+bin/rubocop -f github
+bin/brakeman

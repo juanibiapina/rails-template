@@ -1,0 +1,34 @@
+<% if user_signed_in? && current_user %>
+  <div class="relative" data-controller="dropdown">
+    <button type="button"
+            class="flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
+            data-action="click->dropdown#toggle click@window->dropdown#hide"
+            aria-label="User menu">
+      <% if current_user.picture.present? %>
+        <img src="<%= current_user.picture %>" alt="<%= current_user.name %>" class="w-10 h-10 rounded-full object-cover border border-gray-200">
+      <% else %>
+        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center border border-gray-200">
+          <%= heroicon "user", options: { class: "w-5 h-5 text-gray-600" } %>
+        </div>
+      <% end %>
+    </button>
+
+    <div class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+         data-dropdown-target="menu"
+         role="menu"
+         aria-orientation="vertical"
+         aria-labelledby="user-menu">
+      <div class="py-1" role="none">
+        <div class="px-4 py-2 text-sm text-gray-700 border-b border-gray-100">
+          <p class="font-medium"><%= current_user.name %></p>
+          <p class="text-gray-500"><%= current_user.account&.email %></p>
+        </div>
+        <%= button_to "Sign out",
+                    destroy_account_session_path,
+                    method: :delete,
+                    class: "w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100",
+                    role: "menuitem" %>
+      </div>
+    </div>
+  </div>
+<% end %>

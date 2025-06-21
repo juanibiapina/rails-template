@@ -32,3 +32,13 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# ignore bundler directory
+/vendor/bundle
+
+# Added by `bin/rails tailwindcss:install`
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+# Ignore temporary fly.io deployment files
+fly.staging.deployed.toml
