@@ -1,0 +1,27 @@
+<div data-controller="drawer">
+  <!-- Overlay -->
+  <div data-drawer-target="overlay"
+       data-action="click->drawer#overlayClick"
+       class="fixed inset-0 bg-black/30 z-40 hidden transition-opacity"></div>
+
+  <!-- Drawer Panel -->
+  <aside data-drawer-target="panel"
+         class="fixed top-0 left-0 z-50 w-72 h-full bg-white shadow-xl rounded-r-2xl transform -translate-x-full transition-transform duration-300 flex flex-col hidden"
+         tabindex="-1"
+         role="dialog"
+         aria-modal="true"
+         aria-label="Navigation menu">
+    <div class="flex justify-end p-4">
+      <button type="button"
+              data-drawer-target="closeButton"
+              class="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Close menu"
+              data-action="click->drawer#close">
+        <%= heroicon "x-mark", options: { class: "h-6 w-6 text-gray-500", "aria-hidden": "true" } %>
+      </button>
+    </div>
+    <nav class="flex flex-col gap-2 px-6">
+      <%= link_to "Dashboard", root_path, class: "flex items-center gap-3 text-gray-900 text-base font-medium rounded-lg px-3 py-2 hover:bg-gray-100 transition" %>
+    </nav>
+  </aside>
+</div>

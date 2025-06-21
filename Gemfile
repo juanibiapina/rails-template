@@ -4,8 +4,15 @@ source "https://rubygems.org"
 gem "rails", "~> 8.0.1"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 2.1"
+# Use sqlite3 for development and test environments
+group :development, :test do
+  gem "sqlite3", ">= 2.1"
+end
+
+# Use postgresql as the database for Active Record in production
+group :production do
+  gem "pg", "~> 1.1"
+end
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -20,6 +27,23 @@ gem "jbuilder"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
+# Use Devise for authentication
+gem "devise"
+
+# Use Pundit for authorization
+gem "pundit"
+
+# OAuth2 authentication
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
+
+# Styling
+gem "tailwindcss-ruby", "~> 4.1"
+gem "tailwindcss-rails", "~> 4.2"
+
+# Icons
+gem "heroicons"
+
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"
 gem "solid_queue"
@@ -27,6 +51,10 @@ gem "solid_cable"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
+
+# Error monitoring and performance tracking
+gem "sentry-ruby"
+gem "sentry-rails"
 
 # Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
 gem "kamal", require: false
@@ -58,3 +86,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "dockerfile-rails", ">= 1.7", group: :development
+
+gem "litestream", "~> 0.14.0"
+
+gem "aws-sdk-s3", "~> 1.189", require: false
